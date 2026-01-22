@@ -7,15 +7,15 @@
    CSS Variables (Color Scheme)
    ========================= */
 :root {
-    --primary-color: #166534;      /* TCU Purple */
-    --secondary-color: #f43f5e;    /* Light Purple */
+    --primary-color: #166534;      /* Dark Green */
+    --secondary-color: #f43f5e;    /* Coral Pink */
     --accent-color: #ffd700;       /* Gold accent */
     --text-color: #333;            /* Dark gray for text */
     --text-secondary: #64748b;     /* Lighter gray for captions */
     --bg-color: #f4f4f4;           /* Light background */
     --white: #ffffff;
 }
-
+/*  I adjusted the colors for my portfolio, and took away the TCU purple.I also adjusted the background to fit with my new color scheme */
 /* =========================
    Basic Reset & Typography
    ========================= */
