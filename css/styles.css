@@ -1,420 +1,383 @@
-/* =========================
-   DCDA 40833 Skills Portfolio Template
-   CSS Stylesheet for Student Portfolios
-   ========================= */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Caveat:wght@400;600;700&family=Instrument+Sans:wght@300;400;500&display=swap');
 
-/* =========================
-   CSS Variables (Color Scheme)
-   ========================= */
+/* â”€â”€ VARIABLES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 :root {
-    --primary-color: #166534;      /* Dark Green */
-    --secondary-color: #f43f5e;    /* Coral Pink */
-    --accent-color: #ffd700;       /* Gold accent */
-    --text-color: #333;            /* Dark gray for text */
-    --text-secondary: #64748b;     /* Lighter gray for captions */
-    --bg-color: #f4f4f4;           /* Light background */
-    --white: #ffffff;
-}
-/*  I adjusted the colors for my portfolio, and took away the TCU purple.I also adjusted the background to fit with my new color scheme */
-/* =========================
-   Basic Reset & Typography
-   ========================= */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  --pink:        #F06292;
+  --pink-light:  #F8BBD0;
+  --beige:       #F2EDE4;
+  --beige-dark:  #142807;
+  --dark:        #1C1C1C;
+  --charcoal:    #3A3A3A;
+  --muted:       #080909;
+  --white:       #FDFAF6;
 }
 
-html {
-    scroll-behavior: smooth;       /* Smooth scrolling for anchor links */
-}
+/* â”€â”€ RESET â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 
+/* â”€â”€ BODY â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-    line-height: 1.6;
-    color: var(--text-color);
-    background-color: var(--bg-color);
+  background: #eddfee;
+  font-family: 'Instrument Sans', sans-serif;
+  color: var(--dark);
+  min-height: 100vh;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
 }
 
-/* =========================
-   Header & Navigation
-   ========================= */
-/* Style semantic tags directly - no classes needed! */
-header {
-    background-color: var(--primary-color);
-    color: white;
-    padding: 2rem 0;
-    text-align: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+/* grain texture */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0,8;
 }
 
-header h1 {
-    color: white;
-    margin: 0 0 0.5rem 0;
-    font-size: 2rem;
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-header p {
-    margin: 0;
-    opacity: 0.9;
-    font-size: 1.1rem;
+/* â”€â”€ EVERY TOP-LEVEL BLOCK â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+body > nav,
+body > header,
+body > main,
+body > footer {
+  width: 100%;
+  max-width: 960px;
 }
 
-nav {
-    background-color: #e39da9;
-    padding: 0.75rem;
-    display: flex;              /* Make nav a flex container */
-    justify-content: center;    /* Center the ul inside nav */
-    position: sticky;           /* Stick to top when scrolling */
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+/* â”€â”€ NAV â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+body > nav {
+  background: var(--white);
+  border-radius: 6px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+  animation: fadeUp 0.3s ease both;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+body > nav::-webkit-scrollbar { display: none; }
+
+body > nav ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: nowrap;
+  padding: 0 16px;
 }
 
-/* Style the navigation list */
-nav ul {
-    list-style: none;           /* Remove bullets */
-    padding: 0;                 /* Remove default padding */
-    margin: 0;                  /* Remove default margin */
-    display: flex;              /* Arrange items horizontally */
-    flex-direction: row;        /* Explicit: horizontal on desktop */
-    justify-content: center;    /* Center the items */
-    gap: 1rem;                  /* Space between items */
-    flex-wrap: wrap;            /* Wrap on small screens */
+body > nav ul li a {
+  display: block;
+  padding: 17px 14px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  color: var(--charcoal);
+  text-decoration: none;
+  white-space: nowrap;
+  border-bottom: 2.5px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+body > nav ul li a:hover  { color: var(--pink); }
+body > nav ul li a.active { color: var(--pink); border-bottom-color: var(--pink); }
+
+/* lab pages: nav inside header */
+body > header nav {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0;
+  padding: 0 16px;
+  border-bottom: 1px solid var(--beige-dark);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+body > header nav::-webkit-scrollbar { display: none; }
+
+body > header nav a {
+  display: block;
+  padding: 15px 13px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  color: var(--charcoal);
+  text-decoration: none;
+  white-space: nowrap;
+  border-bottom: 2.5px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+body > header nav a:hover  { color: var(--pink); }
+body > header nav a.active { color: var(--pink); border-bottom-color: var(--pink); }
+
+/* â”€â”€ HEADER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* index.html: header comes AFTER nav */
+body > header {
+  background: var(--beige);
+  border-radius: 6px;
+  box-shadow: 0 4px 28px rgba(0,0,0,0.13);
+  overflow: hidden;
+  animation: fadeUp 0.35s ease both;
+  animation-delay: 0.05s;
+  position: relative;
 }
 
-nav li {
-    list-style: none;           /* Extra insurance - remove bullets */
+/* big decorative name behind the header content */
+body > header::after {
+  content: 'ZK';
+  position: absolute;
+  right: -10px;
+  bottom: -20px;
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 180px;
+  color: var(--pink);
+  opacity: 0.34;
+  pointer-events: none;
+  line-height: 1;
+  letter-spacing: -4px;
+}
+/* Increased opacity of ZK, since it seemed to blend in*/
+body > header h1 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: clamp(38px, 7vw, 76px);
+  color: var(--pink);
+  letter-spacing: -1px;
+  line-height: 1;
+  padding: 36px 44px 10px;
+  position: relative;
+  z-index: 1;
+}
+/* I adjusted opacity and made sure that all the tabs are linked to the correct page */
+body > header > p {
+  font-family: 'Caveat', cursive;
+  font-size: 17px;
+  color: var(--muted);
+  padding: 0 44px 28px;
+  position: relative;
+  z-index: 1;
 }
 
-nav a {
-    color: white;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    transition: background-color 0.3s ease;
-    border-radius: 4px;
+/* lab pages: h1 inside header (after nav) */
+body > header > h1 {
+  padding: 28px 44px 10px;
 }
 
-nav a:hover {
-    background-color: var(--primary-color);
+/* â”€â”€ MAIN â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+body > main {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-/* =========================
-   Main Content
-   ========================= */
-/* Style main semantic tag directly */
-main {
-    max-width: 900px;          /* Don't get too wide */
-    margin: 2rem auto;         /* Center horizontally */
-    padding: 0 1rem;           /* Space on sides for mobile */
+/* â”€â”€ SECTIONS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+body > main section {
+  background: var(--beige);
+  border-radius: 6px;
+  padding: 38px 44px;
+  box-shadow: 0 4px 28px rgba(0,0,0,0.13);
+  position: relative;
+  overflow: hidden;
+  animation: fadeUp 0.4s ease both;
 }
 
-/* All sections inside main get consistent styling */
-main section {
-    background-color: white;
-    padding: 2rem;
-    margin-bottom: 2rem;       /* Space between sections */
-    border-radius: 8px;        /* Rounded corners */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+body > main section:nth-child(1) { animation-delay: 0.10s; }
+body > main section:nth-child(2) { animation-delay: 0.17s; }
+body > main section:nth-child(3) { animation-delay: 0.24s; }
+body > main section:nth-child(4) { animation-delay: 0.31s; }
+body > main section:nth-child(5) { animation-delay: 0.38s; }
+
+/* ghost text decoration per section */
+body > main section::after {
+  position: absolute;
+  right: -8px;
+  bottom: -16px;
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-style: italic;
+  font-size: 88px;
+  color: var(--pink);
+  opacity: 0.25;
+  pointer-events: none;
+  line-height: 0.9;
+  letter-spacing: -2px;
+}
+section#welcome::after   { content: 'hello'; }
+section#about::after     { content: 'me'; }
+section#portfolio::after { content: 'work'; }
+section#reflection::after{ content: 'grow'; }
+
+/* â”€â”€ SECTION HEADINGS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+body > main section > h2 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: clamp(26px, 4vw, 36px);
+  color: var(--pink);
+  line-height: 1.1;
 }
 
-/* Style h2 headings inside sections */
-main section h2 {
-    color: var(--primary-color);
-    border-bottom: 3px solid var(--secondary-color);
-    padding-bottom: 0.5rem;
-    margin-bottom: 1rem;
-    font-size: 1.875rem;
+body > main section > h2::after {
+  content: '';
+  display: block;
+  height: 1.5px;
+  background: linear-gradient(to right, var(--pink), transparent);
+  margin-top: 12px;
+  margin-bottom: 18px;
 }
 
-main section h3 {
-    color: var(--text-color);
-    margin-top: 1.5rem;
-    margin-bottom: 0.75rem;
-    font-size: 1.5rem;
+body > main section h3 {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 19px;
+  color: var(--charcoal);
+  margin-top: 22px;
+  margin-bottom: 6px;
 }
 
-/* Paragraphs inside sections */
-main section p {
-    margin-bottom: 1rem;
-    line-height: 1.8;
+/* â”€â”€ PARAGRAPHS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+body > main section p {
+  font-size: 14.5px;
+  line-height: 1.85;
+  color: var(--charcoal);
+  margin-top: 10px;
 }
 
-/* Lists inside sections */
-main section ul,
-main section ol {
-    margin: 1rem 0 1rem 2rem;
-    line-height: 1.8;
-}
+body > main section p + p { margin-top: 8px; }
 
-main section li {
-    margin-bottom: 0.5rem;
-}
+body > main section strong { color: var(--dark); }
 
-/* =========================
-   Data Visualizations
-   ========================= */
-/* Container for charts and images */
-.viz-container {
-    margin: 2rem 0;
-    text-align: center;
-}
-
-.viz-container img {
-    max-width: 100%;           /* Responsive: never wider than container */
-    height: auto;              /* Maintain aspect ratio */
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-bottom: 0.5rem;
-}
-
-/* Figure captions */
-.viz-container figcaption {
-    font-style: italic;
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-    margin-top: 0.5rem;
-}
-
-/* Grid layout for multiple visualizations */
-.viz-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-    margin: 2rem 0;
-}
-
-/* =========================
-   Code Blocks
-   ========================= */
-/* Improve pre/code styling for Python code */
-pre {
-    background: #2d2d2d;          /* Dark background */
-    color: #f8f8f2;               /* Light text */
-    border: none;
-    border-radius: 8px;
-    padding: 1.5rem;
-    overflow-x: auto;
-    margin: 1.5rem 0;
-    font-size: 0.9rem;
-    line-height: 1.5;
-}
-
-code {
-    font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
-}
-
-/* Inline code (inside paragraphs) */
-p code, li code {
-    background: #f4f4f4;
-    color: #c7254e;
-    padding: 0.2rem 0.4rem;
-    border-radius: 3px;
-    font-size: 0.9em;
-}
-
-/* Code block titles */
-.code-title {
-    background: #1e1e1e;
-    color: #9cdcfe;
-    padding: 0.5rem 1rem;
-    border-radius: 8px 8px 0 0;
-    font-family: monospace;
-    font-size: 0.85rem;
-    margin-bottom: -0.5rem;
-}
-
-.code-title + pre {
-    border-radius: 0 0 8px 8px;
-    margin-top: 0;
-}
-
-/* =========================
-   Data Tables
-   ========================= */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 1.5rem 0;
-    background: white;
-}
-
-th, td {
-    padding: 0.75rem 1rem;
-    text-align: left;
-    border: 1px solid #e2e8f0;
-}
-
-th {
-    background: var(--primary-color);
-    color: white;
-    font-weight: 600;
-}
-
-tr:nth-child(even) {
-    background: #f8f9fa;
-}
-
-.results-table {
-    font-size: 0.95rem;
-    margin: 1.5rem auto;
-    max-width: 700px;
-}
-
-.results-table td {
-    text-align: center;
-}
-
-.results-table td:first-child {
-    text-align: left;
-    font-weight: 500;
-}
-
-/* Highlight key rows */
-.results-table tr.highlight {
-    background: #fff3cd;
-    font-weight: bold;
-}
-
-/* =========================
-   Framework Connections
-   ========================= */
-.framework-callout {
-    background: linear-gradient(135deg, #f0e7f8, #e9d5ff);
-    border-left: 5px solid var(--secondary-color);
-    border-radius: 8px;
-    padding: 1.5rem;
-    margin: 2rem 0;
-}
-
-.framework-callout h3 {
-    color: var(--primary-color);
-    margin-top: 0;
-}
-
-.framework-callout strong {
-    color: var(--secondary-color);
-}
-
-/* =========================
-   Portfolio Cards
-   ========================= */
-/* Grid layout for portfolio cards on home page */
+/* â”€â”€ PORTFOLIO GRID â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    margin: 2rem 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 14px;
+  margin-top: 20px;
 }
 
-/* Individual portfolio card styling */
 .portfolio-card {
-    display: block;
-    background: white;
-    border: 2px solid #e2e8f0;
-    border-radius: 12px;
-    padding: 1.5rem;
-    text-decoration: none;
-    color: var(--text-color);
-    transition: all 0.3s ease;
-    position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: var(--white);
+  border: 1.5px solid var(--beige-dark);
+  border-radius: 6px;
+  padding: 22px 20px;
+  text-decoration: none;
+  color: var(--dark);
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
 }
 
 .portfolio-card:hover {
-    border-color: var(--primary-color);
-    box-shadow: 0 8px 16px rgba(77, 25, 121, 0.15);
-    transform: translateY(-4px);
+  transform: translateY(-5px);
+  border-color: var(--pink);
+  box-shadow: 0 10px 28px rgba(240,98,146,0.15);
 }
 
 .portfolio-card h3 {
-    color: var(--primary-color);
-    margin: 0 0 0.5rem 0;
-    font-size: 1.25rem;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 17px;
+  color: var(--dark);
+  margin: 0;
 }
 
 .portfolio-card p {
-    color: var(--text-secondary);
-    font-size: 0.95rem;
-    margin: 0.75rem 0 0 0;
-    line-height: 1.5;
+  font-size: 12.5px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-top: 4px !important;
 }
 
-/* Lab tag badge on portfolio cards */
 .lab-tag {
-    display: inline-block;
-    background: var(--secondary-color);
-    color: white;
-    font-size: 0.75rem;
-    font-weight: 600;
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+  display: inline-block;
+  background: var(--pink);
+  color: #a06f6f;
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 20px;
+  width: fit-content;
 }
 
-/* =========================
-   Footer (semantic tag)
-   ========================= */
-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 1.5rem;
-    margin-top: 2rem;
+/* â”€â”€ FIGURES / IMAGES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+body > main section figure {
+  margin-top: 20px;
 }
 
-footer a {
-    color: var(--accent-color);
-    text-decoration: none;
+body > main section figure img,
+body > main section img {
+  max-width: 100%;
+  border-radius: 4px;
+  display: block;
+  box-shadow: 0 2px 14px rgba(0,0,0,0.1);
+  margin-top: 14px;
 }
 
-footer a:hover {
-    text-decoration: underline;
+body > main section figcaption {
+  font-family: 'Caveat', cursive;
+  font-size: 15px;
+  color: var(--muted);
+  margin-top: 8px;
+  line-height: 1.5;
 }
 
-/* =========================
-   Responsive Design (Mobile)
-   ========================= */
-@media (max-width: 768px) {
-    header h1 {
-        font-size: 1.5rem;     /* Smaller on mobile */
-    }
+body > main section figcaption strong { color: var(--charcoal); }
 
-    nav {
-        font-size: 0.9rem;
-    }
+body > main section figcaption a,
+body > main section a {
+  color: var(--pink);
+  text-decoration: none;
+}
+body > main section figcaption a:hover,
+body > main section a:hover { text-decoration: underline; }
 
-    /* Stack navigation vertically on mobile */
-    nav ul {
-        flex-direction: column;  /* Change from row to column */
-        align-items: center;     /* Center the stacked items */
-    }
-
-    nav a {
-        display: block;          /* Full width for easier tapping */
-        width: 100%;
-        text-align: center;
-    }
-
-    main section {
-        padding: 1rem;         /* Less padding on mobile */
-    }
-
-    .viz-grid {
-        grid-template-columns: 1fr;  /* Single column on mobile */
-    }
+/* â”€â”€ FOOTER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+body > footer {
+  background: var(--dark);
+  border-radius: 6px;
+  padding: 22px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  animation: fadeUp 0.4s ease both;
+  animation-delay: 0.42s;
+  width: 100%;
+  max-width: 960px;
 }
 
-/* =========================
-   Print Styles (Optional)
-   ========================= */
-@media print {
-    nav {
-        display: none;
-    }
+body > footer p {
+  font-size: 12px;
+  color: #888;
+  line-height: 1.6;
+}
 
-    main section {
-        box-shadow: none;
-        page-break-inside: avoid;
-    }
+body > footer a {
+  color: var(--pink-light);
+  text-decoration: none;
+}
+body > footer a:hover { color: #fff; }
+
+/* â”€â”€ RESPONSIVE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+@media (max-width: 680px) {
+  body { padding: 12px; gap: 12px; }
+  body > header h1 { padding: 24px 24px 8px; font-size: 40px; }
+  body > header > p { padding: 0 24px 20px; }
+  body > main section { padding: 28px 24px; }
+  body > nav ul { padding: 0 8px; }
+  body > nav ul li a { padding: 14px 10px; font-size: 10px; }
+  .portfolio-grid { grid-template-columns: 1fr 1fr; }
+  body > footer { flex-direction: column; gap: 6px; text-align: center; padding: 20px 24px; }
 }
