@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_1959e1aced145d29ee108e075b7f1b88 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+    <div style="
+        position: fixed;
+        bottom: 40px; right: 20px; z-index: 1000;
+        background: rgba(255,255,255,0.95);
+        border-radius: 10px;
+        padding: 14px 18px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        font-family: Arial, sans-serif;
+        min-width: 170px;
+        border: 1px solid #e0e0e0;
+    ">
+      <p style="margin:0 0 10px 0; font-weight:700; font-size:13px;
+                color:#111; letter-spacing:0.5px; text-transform:uppercase;">
+        Location Types
+      </p>
+      
+        <div style="display:flex; align-items:center; margin-bottom:6px;">
+          <div style="
+              width:14px; height:14px; border-radius:50%;
+              background:#4A90D9; margin-right:8px; flex-shrink:0;
+          "></div>
+          <span style="font-size:13px; color:#333;">School</span>
+        </div>
+        <div style="display:flex; align-items:center; margin-bottom:6px;">
+          <div style="
+              width:14px; height:14px; border-radius:50%;
+              background:#E8472A; margin-right:8px; flex-shrink:0;
+          "></div>
+          <span style="font-size:13px; color:#333;">Restaurant</span>
+        </div>
+        <div style="display:flex; align-items:center; margin-bottom:6px;">
+          <div style="
+              width:14px; height:14px; border-radius:50%;
+              background:#9B59B6; margin-right:8px; flex-shrink:0;
+          "></div>
+          <span style="font-size:13px; color:#333;">Museum</span>
+        </div>
+        <div style="display:flex; align-items:center; margin-bottom:6px;">
+          <div style="
+              width:14px; height:14px; border-radius:50%;
+              background:#F39C12; margin-right:8px; flex-shrink:0;
+          "></div>
+          <span style="font-size:13px; color:#333;">Ice Cream Shop</span>
+        </div>
+        <div style="display:flex; align-items:center; margin-bottom:6px;">
+          <div style="
+              width:14px; height:14px; border-radius:50%;
+              background:#27AE60; margin-right:8px; flex-shrink:0;
+          "></div>
+          <span style="font-size:13px; color:#333;">Go Kart Racing</span>
+        </div>
+        <div style="display:flex; align-items:center; margin-bottom:6px;">
+          <div style="
+              width:14px; height:14px; border-radius:50%;
+              background:#E91E8C; margin-right:8px; flex-shrink:0;
+          "></div>
+          <span style="font-size:13px; color:#333;">Art Studio</span>
+        </div>
+        <div style="display:flex; align-items:center; margin-bottom:6px;">
+          <div style="
+              width:14px; height:14px; border-radius:50%;
+              background:#795548; margin-right:8px; flex-shrink:0;
+          "></div>
+          <span style="font-size:13px; color:#333;">Coffee Shop</span>
+        </div>
+        <div style="display:flex; align-items:center; margin-bottom:6px;">
+          <div style="
+              width:14px; height:14px; border-radius:50%;
+              background:#1ABC9C; margin-right:8px; flex-shrink:0;
+          "></div>
+          <span style="font-size:13px; color:#333;">Jazz Lounge</span>
+        </div>
+    </div>
+    
+    
+    <div style="
+        position: fixed; top: 16px; left: 50%; transform: translateX(-50%);
+        z-index: 1000; background: rgba(255,255,255,0.95);
+        border-radius: 30px; padding: 10px 28px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        font-family: Georgia, serif; text-align: center;
+        border: 1px solid #e0e0e0;
+    ">
+      <span style="font-size:20px; font-weight:700; color:#1a1a1a;">
+        📍 My Fort Worth
+      </span>
+      <span style="font-size:13px; color:#666; margin-left:10px;
+                   font-family:Arial,sans-serif;">
+        10 meaningful places
+      </span>
+    </div>
+    
+    
+            <div class="folium-map" id="map_1959e1aced145d29ee108e075b7f1b88" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_1959e1aced145d29ee108e075b7f1b88 = L.map(
+                "map_1959e1aced145d29ee108e075b7f1b88",
+                {
+                    center: [32.7406928, -97.34756329999999],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 13,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+            L.control.scale().addTo(map_1959e1aced145d29ee108e075b7f1b88);
+
+            
+
+        
+    
+            var tile_layer_f12eea6b778a6c75b6302cbfb325dc7f = L.tileLayer(
+                "https://api.mapbox.com/styles/v1/mapbox/streets-v12/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoiem9la3lsaWVlZSIsImEiOiJjbW1lN3Eyd28wNzFjMm9wczR5cnN2eHZ4In0.ycbhQrdBHqi5O5KJ41GicQ",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "\u00a9 \u003ca href=\"https://www.mapbox.com/\"\u003eMapbox\u003c/a\u003e \u00a9 \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_f12eea6b778a6c75b6302cbfb325dc7f.addTo(map_1959e1aced145d29ee108e075b7f1b88);
+        
+    
+            var marker_00fe409233587e08b41e3c1f156699b9 = L.marker(
+                [32.707718, -97.351435],
+                {
+}
+            ).addTo(map_1959e1aced145d29ee108e075b7f1b88);
+        
+    
+            var icon_da1790e6720a221ec3a0210e9e3a85e5 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "white",
+  "iconColor": "#4A90D9",
+  "icon": "graduation-cap",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_4745f6a0c7bab0cbfa675df7fe5aa2aa = L.popup({
+  "maxWidth": 310,
+});
+
+        
+            
+                var i_frame_03175b33302cb1af63917daddc693ce0 = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxkaXYgc3R5bGU9IgogICAgICAgIGZvbnQtZmFtaWx5OiAnR2VvcmdpYScsIHNlcmlmOwogICAgICAgIHdpZHRoOiAyODBweDsKICAgICAgICBib3JkZXItcmFkaXVzOiAxMHB4OwogICAgICAgIG92ZXJmbG93OiBoaWRkZW47CiAgICAgICAgYm94LXNoYWRvdzogMCA0cHggMTZweCByZ2JhKDAsMCwwLDAuMTgpOwogICAgICAgIGJhY2tncm91bmQ6ICNmZmY7CiAgICAiPgogICAgICA8IS0tIEltYWdlIC0tPgogICAgICA8ZGl2IHN0eWxlPSIKICAgICAgICAgIHdpZHRoOiAxMDAlOwogICAgICAgICAgaGVpZ2h0OiAxNjBweDsKICAgICAgICAgIGJhY2tncm91bmQ6ICNlZWUgdXJsKCdodHRwczovL2Z3aXNkMjAxN2JvbmQuY29tL3dwLWNvbnRlbnQvdXBsb2Fkcy8yMDE4LzA4L3JsLXBhc2NoYWwtc2NhbGVkLmpwZycpIGNlbnRlci9jb3ZlciBuby1yZXBlYXQ7CiAgICAgICI+PC9kaXY+CgogICAgICA8IS0tIENvbnRlbnQgLS0+CiAgICAgIDxkaXYgc3R5bGU9InBhZGRpbmc6IDE0cHggMTZweCAxNnB4OyI+CiAgICAgICAgPCEtLSBUeXBlIGJhZGdlIC0tPgogICAgICAgIDxzcGFuIHN0eWxlPSIKICAgICAgICAgICAgZGlzcGxheTogaW5saW5lLWJsb2NrOwogICAgICAgICAgICBiYWNrZ3JvdW5kOiAjNEE5MEQ5OwogICAgICAgICAgICBjb2xvcjogI2ZmZjsKICAgICAgICAgICAgZm9udC1zaXplOiAxMHB4OwogICAgICAgICAgICBmb250LWZhbWlseTogJ0FyaWFsJywgc2Fucy1zZXJpZjsKICAgICAgICAgICAgZm9udC13ZWlnaHQ6IDcwMDsKICAgICAgICAgICAgbGV0dGVyLXNwYWNpbmc6IDFweDsKICAgICAgICAgICAgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTsKICAgICAgICAgICAgcGFkZGluZzogM3B4IDhweDsKICAgICAgICAgICAgYm9yZGVyLXJhZGl1czogMjBweDsKICAgICAgICAgICAgbWFyZ2luLWJvdHRvbTogOHB4OwogICAgICAgICI+U2Nob29sPC9zcGFuPgoKICAgICAgICA8IS0tIE5hbWUgLS0+CiAgICAgICAgPGgzIHN0eWxlPSIKICAgICAgICAgICAgbWFyZ2luOiAwIDAgOHB4IDA7CiAgICAgICAgICAgIGZvbnQtc2l6ZTogMTdweDsKICAgICAgICAgICAgY29sb3I6ICMxYTFhMWE7CiAgICAgICAgICAgIGxpbmUtaGVpZ2h0OiAxLjM7CiAgICAgICAgIj5QYXNjaGFsIEhpZ2ggU2Nob29sPC9oMz4KCiAgICAgICAgPCEtLSBEZXNjcmlwdGlvbiAtLT4KICAgICAgICA8cCBzdHlsZT0iCiAgICAgICAgICAgIG1hcmdpbjogMDsKICAgICAgICAgICAgZm9udC1zaXplOiAxM3B4OwogICAgICAgICAgICBjb2xvcjogIzU1NTsKICAgICAgICAgICAgbGluZS1oZWlnaHQ6IDEuNjsKICAgICAgICAgICAgZm9udC1mYW1pbHk6ICdBcmlhbCcsIHNhbnMtc2VyaWY7CiAgICAgICAgIj5UaGlzIHdhcyBteSBoaWdoIHNjaG9vbCBhbmQgSSBtZXQgc29tZSBvZiBteSBjbG9zZXN0IGZyaWVuZHMgaGVyZS4gSSBhbHNvIGVuam95ZWQgbXkgdGVhY2hlcnMuPC9wPgogICAgICA8L2Rpdj4KICAgIDwvZGl2PgogICAg" width="300" style="border:none !important;" height="310"></iframe>`)[0];
+                popup_4745f6a0c7bab0cbfa675df7fe5aa2aa.setContent(i_frame_03175b33302cb1af63917daddc693ce0);
+            
+        
+
+        marker_00fe409233587e08b41e3c1f156699b9.bindPopup(popup_4745f6a0c7bab0cbfa675df7fe5aa2aa)
+        ;
+
+        
+    
+    
+            marker_00fe409233587e08b41e3c1f156699b9.bindTooltip(
+                `<div>
+                     <b>Paschal High School</b><br><i>School</i>
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_00fe409233587e08b41e3c1f156699b9.setIcon(icon_da1790e6720a221ec3a0210e9e3a85e5);
+            
+    
+            var marker_c39656c2a4553811ac481aba0177dddb = L.marker(
+                [32.73045, -97.33961],
+                {
+}
+            ).addTo(map_1959e1aced145d29ee108e075b7f1b88);
+        
+    
+            var icon_5bbe04086c4df685b34f997ffb1ff1bb = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "white",
+  "iconColor": "#E8472A",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_d1b6e5d5d7107e3b0613b73472b67393 = L.popup({
+  "maxWidth": 310,
+});
+
+        
+            
+                var i_frame_800f9a3bc0cdb03651877cf497618e30 = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxkaXYgc3R5bGU9IgogICAgICAgIGZvbnQtZmFtaWx5OiAnR2VvcmdpYScsIHNlcmlmOwogICAgICAgIHdpZHRoOiAyODBweDsKICAgICAgICBib3JkZXItcmFkaXVzOiAxMHB4OwogICAgICAgIG92ZXJmbG93OiBoaWRkZW47CiAgICAgICAgYm94LXNoYWRvdzogMCA0cHggMTZweCByZ2JhKDAsMCwwLDAuMTgpOwogICAgICAgIGJhY2tncm91bmQ6ICNmZmY7CiAgICAiPgogICAgICA8IS0tIEltYWdlIC0tPgogICAgICA8ZGl2IHN0eWxlPSIKICAgICAgICAgIHdpZHRoOiAxMDAlOwogICAgICAgICAgaGVpZ2h0OiAxNjBweDsKICAgICAgICAgIGJhY2tncm91bmQ6ICNlZWUgdXJsKCdodHRwczovL2R5bmFtaWMtbWVkaWEtY2RuLnRyaXBhZHZpc29yLmNvbS9tZWRpYS9waG90by1vLzJmL2JiL2Y0L2ZmL2NhcHRpb24uanBnP3c9OTAwJmg9NTAwJnM9MScpIGNlbnRlci9jb3ZlciBuby1yZXBlYXQ7CiAgICAgICI+PC9kaXY+CgogICAgICA8IS0tIENvbnRlbnQgLS0+CiAgICAgIDxkaXYgc3R5bGU9InBhZGRpbmc6IDE0cHggMTZweCAxNnB4OyI+CiAgICAgICAgPCEtLSBUeXBlIGJhZGdlIC0tPgogICAgICAgIDxzcGFuIHN0eWxlPSIKICAgICAgICAgICAgZGlzcGxheTogaW5saW5lLWJsb2NrOwogICAgICAgICAgICBiYWNrZ3JvdW5kOiAjRTg0NzJBOwogICAgICAgICAgICBjb2xvcjogI2ZmZjsKICAgICAgICAgICAgZm9udC1zaXplOiAxMHB4OwogICAgICAgICAgICBmb250LWZhbWlseTogJ0FyaWFsJywgc2Fucy1zZXJpZjsKICAgICAgICAgICAgZm9udC13ZWlnaHQ6IDcwMDsKICAgICAgICAgICAgbGV0dGVyLXNwYWNpbmc6IDFweDsKICAgICAgICAgICAgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTsKICAgICAgICAgICAgcGFkZGluZzogM3B4IDhweDsKICAgICAgICAgICAgYm9yZGVyLXJhZGl1czogMjBweDsKICAgICAgICAgICAgbWFyZ2luLWJvdHRvbTogOHB4OwogICAgICAgICI+UmVzdGF1cmFudDwvc3Bhbj4KCiAgICAgICAgPCEtLSBOYW1lIC0tPgogICAgICAgIDxoMyBzdHlsZT0iCiAgICAgICAgICAgIG1hcmdpbjogMCAwIDhweCAwOwogICAgICAgICAgICBmb250LXNpemU6IDE3cHg7CiAgICAgICAgICAgIGNvbG9yOiAjMWExYTFhOwogICAgICAgICAgICBsaW5lLWhlaWdodDogMS4zOwogICAgICAgICI+UGllIFRhcCBSZXN0YXVyYW50ICsgQmFyPC9oMz4KCiAgICAgICAgPCEtLSBEZXNjcmlwdGlvbiAtLT4KICAgICAgICA8cCBzdHlsZT0iCiAgICAgICAgICAgIG1hcmdpbjogMDsKICAgICAgICAgICAgZm9udC1zaXplOiAxM3B4OwogICAgICAgICAgICBjb2xvcjogIzU1NTsKICAgICAgICAgICAgbGluZS1oZWlnaHQ6IDEuNjsKICAgICAgICAgICAgZm9udC1mYW1pbHk6ICdBcmlhbCcsIHNhbnMtc2VyaWY7CiAgICAgICAgIj5JIHdvcmtlZCBhdCB0aGlzIHJlc3RhdXJhbnQgZm9yIDMgeWVhcnMgYW5kIGJlY2FtZSBnb29kIGZyaWVuZHMgd2l0aCBteSBjb3dvcmtlcnMuIEkgZW5qb3llZCB0aGUgY29tbXVuaXR5IHdpdGhpbiB0aGlzIHJlc3RhdXJhbnQuPC9wPgogICAgICA8L2Rpdj4KICAgIDwvZGl2PgogICAg" width="300" style="border:none !important;" height="310"></iframe>`)[0];
+                popup_d1b6e5d5d7107e3b0613b73472b67393.setContent(i_frame_800f9a3bc0cdb03651877cf497618e30);
+            
+        
+
+        marker_c39656c2a4553811ac481aba0177dddb.bindPopup(popup_d1b6e5d5d7107e3b0613b73472b67393)
+        ;
+
+        
+    
+    
+            marker_c39656c2a4553811ac481aba0177dddb.bindTooltip(
+                `<div>
+                     <b>Pie Tap Restaurant + Bar</b><br><i>Restaurant</i>
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_c39656c2a4553811ac481aba0177dddb.setIcon(icon_5bbe04086c4df685b34f997ffb1ff1bb);
+            
+    
+            var marker_dc9caf306a0e7e3d07082c595675f093 = L.marker(
+                [32.748686, -97.365017],
+                {
+}
+            ).addTo(map_1959e1aced145d29ee108e075b7f1b88);
+        
+    
+            var icon_9ad26aa61dbd3b4ea53cb0e7301748f2 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "white",
+  "iconColor": "#9B59B6",
+  "icon": "institution",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_d7014cde78e2b76249853d7912b39412 = L.popup({
+  "maxWidth": 310,
+});
+
+        
+            
+                var i_frame_1f45a54145df9c13bda77e6acd646f71 = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxkaXYgc3R5bGU9IgogICAgICAgIGZvbnQtZmFtaWx5OiAnR2VvcmdpYScsIHNlcmlmOwogICAgICAgIHdpZHRoOiAyODBweDsKICAgICAgICBib3JkZXItcmFkaXVzOiAxMHB4OwogICAgICAgIG92ZXJmbG93OiBoaWRkZW47CiAgICAgICAgYm94LXNoYWRvdzogMCA0cHggMTZweCByZ2JhKDAsMCwwLDAuMTgpOwogICAgICAgIGJhY2tncm91bmQ6ICNmZmY7CiAgICAiPgogICAgICA8IS0tIEltYWdlIC0tPgogICAgICA8ZGl2IHN0eWxlPSIKICAgICAgICAgIHdpZHRoOiAxMDAlOwogICAgICAgICAgaGVpZ2h0OiAxNjBweDsKICAgICAgICAgIGJhY2tncm91bmQ6ICNlZWUgdXJsKCdodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vZ3BzLWNzLXMvQUhWQXdlcWM2TktnVEZzdU4zdC1OVmJJVVo0NlllN2pRSjd6d3d3dUdFZmsyU3ZjYkFaM0hsNnFnRmpPS0NtNFYxd0dxU3VsOHRRZi1rdjhzQjlLQ1BtUk1ZZnFXN1p1c0hzSkhsNzRWem1mSnpQNnlBblBqZW1CbC1JN2ZCSTFON2hoNkdtS2ZxdjlaQT1zMTM2MC13MTM2MC1oMTAyMC1ydycpIGNlbnRlci9jb3ZlciBuby1yZXBlYXQ7CiAgICAgICI+PC9kaXY+CgogICAgICA8IS0tIENvbnRlbnQgLS0+CiAgICAgIDxkaXYgc3R5bGU9InBhZGRpbmc6IDE0cHggMTZweCAxNnB4OyI+CiAgICAgICAgPCEtLSBUeXBlIGJhZGdlIC0tPgogICAgICAgIDxzcGFuIHN0eWxlPSIKICAgICAgICAgICAgZGlzcGxheTogaW5saW5lLWJsb2NrOwogICAgICAgICAgICBiYWNrZ3JvdW5kOiAjOUI1OUI2OwogICAgICAgICAgICBjb2xvcjogI2ZmZjsKICAgICAgICAgICAgZm9udC1zaXplOiAxMHB4OwogICAgICAgICAgICBmb250LWZhbWlseTogJ0FyaWFsJywgc2Fucy1zZXJpZjsKICAgICAgICAgICAgZm9udC13ZWlnaHQ6IDcwMDsKICAgICAgICAgICAgbGV0dGVyLXNwYWNpbmc6IDFweDsKICAgICAgICAgICAgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTsKICAgICAgICAgICAgcGFkZGluZzogM3B4IDhweDsKICAgICAgICAgICAgYm9yZGVyLXJhZGl1czogMjBweDsKICAgICAgICAgICAgbWFyZ2luLWJvdHRvbTogOHB4OwogICAgICAgICI+TXVzZXVtPC9zcGFuPgoKICAgICAgICA8IS0tIE5hbWUgLS0+CiAgICAgICAgPGgzIHN0eWxlPSIKICAgICAgICAgICAgbWFyZ2luOiAwIDAgOHB4IDA7CiAgICAgICAgICAgIGZvbnQtc2l6ZTogMTdweDsKICAgICAgICAgICAgY29sb3I6ICMxYTFhMWE7CiAgICAgICAgICAgIGxpbmUtaGVpZ2h0OiAxLjM7CiAgICAgICAgIj5LaW1iZWxsIEFydCBNdXNldW08L2gzPgoKICAgICAgICA8IS0tIERlc2NyaXB0aW9uIC0tPgogICAgICAgIDxwIHN0eWxlPSIKICAgICAgICAgICAgbWFyZ2luOiAwOwogICAgICAgICAgICBmb250LXNpemU6IDEzcHg7CiAgICAgICAgICAgIGNvbG9yOiAjNTU1OwogICAgICAgICAgICBsaW5lLWhlaWdodDogMS42OwogICAgICAgICAgICBmb250LWZhbWlseTogJ0FyaWFsJywgc2Fucy1zZXJpZjsKICAgICAgICAiPkkgZ3JldyB1cCBnb2luZyB0byB0aGlzIG11c2V1bSwgYW5kIGVuam95ZWQgbGVhcm5pbmcgYWJvdXQgYXJ0LiBJIGFtIGN1cnJlbnRseSBpbnRlcm5pbmcgaGVyZSwgYW5kIGxvdmUgaXQuPC9wPgogICAgICA8L2Rpdj4KICAgIDwvZGl2PgogICAg" width="300" style="border:none !important;" height="310"></iframe>`)[0];
+                popup_d7014cde78e2b76249853d7912b39412.setContent(i_frame_1f45a54145df9c13bda77e6acd646f71);
+            
+        
+
+        marker_dc9caf306a0e7e3d07082c595675f093.bindPopup(popup_d7014cde78e2b76249853d7912b39412)
+        ;
+
+        
+    
+    
+            marker_dc9caf306a0e7e3d07082c595675f093.bindTooltip(
+                `<div>
+                     <b>Kimbell Art Museum</b><br><i>Museum</i>
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_dc9caf306a0e7e3d07082c595675f093.setIcon(icon_9ad26aa61dbd3b4ea53cb0e7301748f2);
+            
+    
+            var marker_6b29e007e8857af0ba668cd7b16d806f = L.marker(
+                [32.730461, -97.337905],
+                {
+}
+            ).addTo(map_1959e1aced145d29ee108e075b7f1b88);
+        
+    
+            var icon_42f1fcd460e307d9a2fe9de73ab3ac02 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "white",
+  "iconColor": "#F39C12",
+  "icon": "star",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_37039d8be415a4abc9588c8749b3b8d6 = L.popup({
+  "maxWidth": 310,
+});
+
+        
+            
+                var i_frame_89077a4e2e659e443b397e7bcd9d4196 = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxkaXYgc3R5bGU9IgogICAgICAgIGZvbnQtZmFtaWx5OiAnR2VvcmdpYScsIHNlcmlmOwogICAgICAgIHdpZHRoOiAyODBweDsKICAgICAgICBib3JkZXItcmFkaXVzOiAxMHB4OwogICAgICAgIG92ZXJmbG93OiBoaWRkZW47CiAgICAgICAgYm94LXNoYWRvdzogMCA0cHggMTZweCByZ2JhKDAsMCwwLDAuMTgpOwogICAgICAgIGJhY2tncm91bmQ6ICNmZmY7CiAgICAiPgogICAgICA8IS0tIEltYWdlIC0tPgogICAgICA8ZGl2IHN0eWxlPSIKICAgICAgICAgIHdpZHRoOiAxMDAlOwogICAgICAgICAgaGVpZ2h0OiAxNjBweDsKICAgICAgICAgIGJhY2tncm91bmQ6ICNlZWUgdXJsKCdodHRwczovL2VuY3J5cHRlZC10Ym4wLmdzdGF0aWMuY29tL2ltYWdlcz9xPXRibjpBTmQ5R2NSSGRaS25SSVJ4R3hVSlZxWjZOOWUzUTZCajhBNVplb3B6NVEmcycpIGNlbnRlci9jb3ZlciBuby1yZXBlYXQ7CiAgICAgICI+PC9kaXY+CgogICAgICA8IS0tIENvbnRlbnQgLS0+CiAgICAgIDxkaXYgc3R5bGU9InBhZGRpbmc6IDE0cHggMTZweCAxNnB4OyI+CiAgICAgICAgPCEtLSBUeXBlIGJhZGdlIC0tPgogICAgICAgIDxzcGFuIHN0eWxlPSIKICAgICAgICAgICAgZGlzcGxheTogaW5saW5lLWJsb2NrOwogICAgICAgICAgICBiYWNrZ3JvdW5kOiAjRjM5QzEyOwogICAgICAgICAgICBjb2xvcjogI2ZmZjsKICAgICAgICAgICAgZm9udC1zaXplOiAxMHB4OwogICAgICAgICAgICBmb250LWZhbWlseTogJ0FyaWFsJywgc2Fucy1zZXJpZjsKICAgICAgICAgICAgZm9udC13ZWlnaHQ6IDcwMDsKICAgICAgICAgICAgbGV0dGVyLXNwYWNpbmc6IDFweDsKICAgICAgICAgICAgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTsKICAgICAgICAgICAgcGFkZGluZzogM3B4IDhweDsKICAgICAgICAgICAgYm9yZGVyLXJhZGl1czogMjBweDsKICAgICAgICAgICAgbWFyZ2luLWJvdHRvbTogOHB4OwogICAgICAgICI+SWNlIENyZWFtIFNob3A8L3NwYW4+CgogICAgICAgIDwhLS0gTmFtZSAtLT4KICAgICAgICA8aDMgc3R5bGU9IgogICAgICAgICAgICBtYXJnaW46IDAgMCA4cHggMDsKICAgICAgICAgICAgZm9udC1zaXplOiAxN3B4OwogICAgICAgICAgICBjb2xvcjogIzFhMWExYTsKICAgICAgICAgICAgbGluZS1oZWlnaHQ6IDEuMzsKICAgICAgICAiPk1lbHQgSWNlIENyZWFtPC9oMz4KCiAgICAgICAgPCEtLSBEZXNjcmlwdGlvbiAtLT4KICAgICAgICA8cCBzdHlsZT0iCiAgICAgICAgICAgIG1hcmdpbjogMDsKICAgICAgICAgICAgZm9udC1zaXplOiAxM3B4OwogICAgICAgICAgICBjb2xvcjogIzU1NTsKICAgICAgICAgICAgbGluZS1oZWlnaHQ6IDEuNjsKICAgICAgICAgICAgZm9udC1mYW1pbHk6ICdBcmlhbCcsIHNhbnMtc2VyaWY7CiAgICAgICAgIj5NeSBmaXJzdCBvZmZpY2lhbCBqb2IsIGFuZCBJIGhhZCB0aGUgY2hhbmNlIHRvIHdvcmsgd2l0aCBteSBjbG9zZXN0IGZyaWVuZHMgd2hvIEkgYW0gc3RpbGwgaW4gY29udGFjdCB3aXRoIHRvZGF5LjwvcD4KICAgICAgPC9kaXY+CiAgICA8L2Rpdj4KICAgIA==" width="300" style="border:none !important;" height="310"></iframe>`)[0];
+                popup_37039d8be415a4abc9588c8749b3b8d6.setContent(i_frame_89077a4e2e659e443b397e7bcd9d4196);
+            
+        
+
+        marker_6b29e007e8857af0ba668cd7b16d806f.bindPopup(popup_37039d8be415a4abc9588c8749b3b8d6)
+        ;
+
+        
+    
+    
+            marker_6b29e007e8857af0ba668cd7b16d806f.bindTooltip(
+                `<div>
+                     <b>Melt Ice Cream</b><br><i>Ice Cream Shop</i>
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_6b29e007e8857af0ba668cd7b16d806f.setIcon(icon_42f1fcd460e307d9a2fe9de73ab3ac02);
+            
+    
+            var marker_1622e49b0c4f15937a758688fbc80f45 = L.marker(
+                [32.750375, -97.359104],
+                {
+}
+            ).addTo(map_1959e1aced145d29ee108e075b7f1b88);
+        
+    
+            var icon_99523fba67ce9301d90ca2896a4cf683 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "white",
+  "iconColor": "#E8472A",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_823895df3d118a281053c3f591311aa5 = L.popup({
+  "maxWidth": 310,
+});
+
+        
+            
+                var i_frame_c92c5e91e31a2e83b212e189c704929c = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxkaXYgc3R5bGU9IgogICAgICAgIGZvbnQtZmFtaWx5OiAnR2VvcmdpYScsIHNlcmlmOwogICAgICAgIHdpZHRoOiAyODBweDsKICAgICAgICBib3JkZXItcmFkaXVzOiAxMHB4OwogICAgICAgIG92ZXJmbG93OiBoaWRkZW47CiAgICAgICAgYm94LXNoYWRvdzogMCA0cHggMTZweCByZ2JhKDAsMCwwLDAuMTgpOwogICAgICAgIGJhY2tncm91bmQ6ICNmZmY7CiAgICAiPgogICAgICA8IS0tIEltYWdlIC0tPgogICAgICA8ZGl2IHN0eWxlPSIKICAgICAgICAgIHdpZHRoOiAxMDAlOwogICAgICAgICAgaGVpZ2h0OiAxNjBweDsKICAgICAgICAgIGJhY2tncm91bmQ6ICNlZWUgdXJsKCdodHRwczovL2kwLndwLmNvbS9mb3J0d29ydGhyZXBvcnQub3JnL3dwLWNvbnRlbnQvdXBsb2Fkcy8yMDI0LzEyL3RlcnJhLW1lZGl0ZXJyYW5lYW4uanBnP3Jlc2l6ZT0xMjAwJTJDNzg4JnF1YWxpdHk9ODkmc3NsPTEnKSBjZW50ZXIvY292ZXIgbm8tcmVwZWF0OwogICAgICAiPjwvZGl2PgoKICAgICAgPCEtLSBDb250ZW50IC0tPgogICAgICA8ZGl2IHN0eWxlPSJwYWRkaW5nOiAxNHB4IDE2cHggMTZweDsiPgogICAgICAgIDwhLS0gVHlwZSBiYWRnZSAtLT4KICAgICAgICA8c3BhbiBzdHlsZT0iCiAgICAgICAgICAgIGRpc3BsYXk6IGlubGluZS1ibG9jazsKICAgICAgICAgICAgYmFja2dyb3VuZDogI0U4NDcyQTsKICAgICAgICAgICAgY29sb3I6ICNmZmY7CiAgICAgICAgICAgIGZvbnQtc2l6ZTogMTBweDsKICAgICAgICAgICAgZm9udC1mYW1pbHk6ICdBcmlhbCcsIHNhbnMtc2VyaWY7CiAgICAgICAgICAgIGZvbnQtd2VpZ2h0OiA3MDA7CiAgICAgICAgICAgIGxldHRlci1zcGFjaW5nOiAxcHg7CiAgICAgICAgICAgIHRleHQtdHJhbnNmb3JtOiB1cHBlcmNhc2U7CiAgICAgICAgICAgIHBhZGRpbmc6IDNweCA4cHg7CiAgICAgICAgICAgIGJvcmRlci1yYWRpdXM6IDIwcHg7CiAgICAgICAgICAgIG1hcmdpbi1ib3R0b206IDhweDsKICAgICAgICAiPlJlc3RhdXJhbnQ8L3NwYW4+CgogICAgICAgIDwhLS0gTmFtZSAtLT4KICAgICAgICA8aDMgc3R5bGU9IgogICAgICAgICAgICBtYXJnaW46IDAgMCA4cHggMDsKICAgICAgICAgICAgZm9udC1zaXplOiAxN3B4OwogICAgICAgICAgICBjb2xvcjogIzFhMWExYTsKICAgICAgICAgICAgbGluZS1oZWlnaHQ6IDEuMzsKICAgICAgICAiPlRlcnJhIE1lZGl0ZXJyYW5lYW48L2gzPgoKICAgICAgICA8IS0tIERlc2NyaXB0aW9uIC0tPgogICAgICAgIDxwIHN0eWxlPSIKICAgICAgICAgICAgbWFyZ2luOiAwOwogICAgICAgICAgICBmb250LXNpemU6IDEzcHg7CiAgICAgICAgICAgIGNvbG9yOiAjNTU1OwogICAgICAgICAgICBsaW5lLWhlaWdodDogMS42OwogICAgICAgICAgICBmb250LWZhbWlseTogJ0FyaWFsJywgc2Fucy1zZXJpZjsKICAgICAgICAiPlRoaXMgaXMgbXkgbW9tJ3MgZmF2b3JpdGUgcmVzdGF1cmFudCwgYW5kIG15IG9sZGVyIHNpc3RlciB3b3JrZWQgaGVyZSB3aGVuIEkgd2FzIHlvdW5nZXIuIEkgbG92ZSBNZWRpdGVycmFuZWFuIGZvb2QuPC9wPgogICAgICA8L2Rpdj4KICAgIDwvZGl2PgogICAg" width="300" style="border:none !important;" height="310"></iframe>`)[0];
+                popup_823895df3d118a281053c3f591311aa5.setContent(i_frame_c92c5e91e31a2e83b212e189c704929c);
+            
+        
+
+        marker_1622e49b0c4f15937a758688fbc80f45.bindPopup(popup_823895df3d118a281053c3f591311aa5)
+        ;
+
+        
+    
+    
+            marker_1622e49b0c4f15937a758688fbc80f45.bindTooltip(
+                `<div>
+                     <b>Terra Mediterranean</b><br><i>Restaurant</i>
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_1622e49b0c4f15937a758688fbc80f45.setIcon(icon_99523fba67ce9301d90ca2896a4cf683);
+            
+    
+            var marker_1cd20ac6be0569c05d6396398cf9f25a = L.marker(
+                [32.76554, -97.35994],
+                {
+}
+            ).addTo(map_1959e1aced145d29ee108e075b7f1b88);
+        
+    
+            var icon_c542c63b510034d7a5ef7b68a2bb5ead = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "white",
+  "iconColor": "#27AE60",
+  "icon": "flag",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9666818a975d739c4d08205d9625f42f = L.popup({
+  "maxWidth": 310,
+});
+
+        
+            
+                var i_frame_09cd4ae412a3cff7c8470dfc8e66b57f = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxkaXYgc3R5bGU9IgogICAgICAgIGZvbnQtZmFtaWx5OiAnR2VvcmdpYScsIHNlcmlmOwogICAgICAgIHdpZHRoOiAyODBweDsKICAgICAgICBib3JkZXItcmFkaXVzOiAxMHB4OwogICAgICAgIG92ZXJmbG93OiBoaWRkZW47CiAgICAgICAgYm94LXNoYWRvdzogMCA0cHggMTZweCByZ2JhKDAsMCwwLDAuMTgpOwogICAgICAgIGJhY2tncm91bmQ6ICNmZmY7CiAgICAiPgogICAgICA8IS0tIEltYWdlIC0tPgogICAgICA8ZGl2IHN0eWxlPSIKICAgICAgICAgIHdpZHRoOiAxMDAlOwogICAgICAgICAgaGVpZ2h0OiAxNjBweDsKICAgICAgICAgIGJhY2tncm91bmQ6ICNlZWUgdXJsKCdodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vcC9BRjFRaXBNUkZaT2RtejNmYmg4WEdpQ05YeDlya2hXNGNnQ1dzSG1oVFVKOT1zMTM2MC13MTM2MC1oMTAyMC1ydycpIGNlbnRlci9jb3ZlciBuby1yZXBlYXQ7CiAgICAgICI+PC9kaXY+CgogICAgICA8IS0tIENvbnRlbnQgLS0+CiAgICAgIDxkaXYgc3R5bGU9InBhZGRpbmc6IDE0cHggMTZweCAxNnB4OyI+CiAgICAgICAgPCEtLSBUeXBlIGJhZGdlIC0tPgogICAgICAgIDxzcGFuIHN0eWxlPSIKICAgICAgICAgICAgZGlzcGxheTogaW5saW5lLWJsb2NrOwogICAgICAgICAgICBiYWNrZ3JvdW5kOiAjMjdBRTYwOwogICAgICAgICAgICBjb2xvcjogI2ZmZjsKICAgICAgICAgICAgZm9udC1zaXplOiAxMHB4OwogICAgICAgICAgICBmb250LWZhbWlseTogJ0FyaWFsJywgc2Fucy1zZXJpZjsKICAgICAgICAgICAgZm9udC13ZWlnaHQ6IDcwMDsKICAgICAgICAgICAgbGV0dGVyLXNwYWNpbmc6IDFweDsKICAgICAgICAgICAgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTsKICAgICAgICAgICAgcGFkZGluZzogM3B4IDhweDsKICAgICAgICAgICAgYm9yZGVyLXJhZGl1czogMjBweDsKICAgICAgICAgICAgbWFyZ2luLWJvdHRvbTogOHB4OwogICAgICAgICI+R28gS2FydCBSYWNpbmc8L3NwYW4+CgogICAgICAgIDwhLS0gTmFtZSAtLT4KICAgICAgICA8aDMgc3R5bGU9IgogICAgICAgICAgICBtYXJnaW46IDAgMCA4cHggMDsKICAgICAgICAgICAgZm9udC1zaXplOiAxN3B4OwogICAgICAgICAgICBjb2xvcjogIzFhMWExYTsKICAgICAgICAgICAgbGluZS1oZWlnaHQ6IDEuMzsKICAgICAgICAiPlJvY2t3b29kIEdvIEthcnQgUmFjaW5nPC9oMz4KCiAgICAgICAgPCEtLSBEZXNjcmlwdGlvbiAtLT4KICAgICAgICA8cCBzdHlsZT0iCiAgICAgICAgICAgIG1hcmdpbjogMDsKICAgICAgICAgICAgZm9udC1zaXplOiAxM3B4OwogICAgICAgICAgICBjb2xvcjogIzU1NTsKICAgICAgICAgICAgbGluZS1oZWlnaHQ6IDEuNjsKICAgICAgICAgICAgZm9udC1mYW1pbHk6ICdBcmlhbCcsIHNhbnMtc2VyaWY7CiAgICAgICAgIj5NeSBicm90aGVyIGFuZCBJIHVzZWQgdG8gbG92ZSBnb2luZyByYWNlIGNhciBkcml2aW5nIHdoZW4gd2Ugd2VyZSB5b3VuZ2VyLiBJIGhhdmUgbWFueSBtZW1vcmllcyBhdCB0aGlzIHBsYWNlLjwvcD4KICAgICAgPC9kaXY+CiAgICA8L2Rpdj4KICAgIA==" width="300" style="border:none !important;" height="310"></iframe>`)[0];
+                popup_9666818a975d739c4d08205d9625f42f.setContent(i_frame_09cd4ae412a3cff7c8470dfc8e66b57f);
+            
+        
+
+        marker_1cd20ac6be0569c05d6396398cf9f25a.bindPopup(popup_9666818a975d739c4d08205d9625f42f)
+        ;
+
+        
+    
+    
+            marker_1cd20ac6be0569c05d6396398cf9f25a.bindTooltip(
+                `<div>
+                     <b>Rockwood Go Kart Racing</b><br><i>Go Kart Racing</i>
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_1cd20ac6be0569c05d6396398cf9f25a.setIcon(icon_c542c63b510034d7a5ef7b68a2bb5ead);
+            
+    
+            var marker_d3742d430a017bb1f65ef113cb421f0e = L.marker(
+                [32.715595, -97.343435],
+                {
+}
+            ).addTo(map_1959e1aced145d29ee108e075b7f1b88);
+        
+    
+            var icon_a2da7af17a02c483a00d4de461d5f82e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "white",
+  "iconColor": "#F39C12",
+  "icon": "star",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1b25624d227c3d4294e29634bf85e9e3 = L.popup({
+  "maxWidth": 310,
+});
+
+        
+            
+                var i_frame_29b73825ea5336ee6ec5499369ec6dff = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxkaXYgc3R5bGU9IgogICAgICAgIGZvbnQtZmFtaWx5OiAnR2VvcmdpYScsIHNlcmlmOwogICAgICAgIHdpZHRoOiAyODBweDsKICAgICAgICBib3JkZXItcmFkaXVzOiAxMHB4OwogICAgICAgIG92ZXJmbG93OiBoaWRkZW47CiAgICAgICAgYm94LXNoYWRvdzogMCA0cHggMTZweCByZ2JhKDAsMCwwLDAuMTgpOwogICAgICAgIGJhY2tncm91bmQ6ICNmZmY7CiAgICAiPgogICAgICA8IS0tIEltYWdlIC0tPgogICAgICA8ZGl2IHN0eWxlPSIKICAgICAgICAgIHdpZHRoOiAxMDAlOwogICAgICAgICAgaGVpZ2h0OiAxNjBweDsKICAgICAgICAgIGJhY2tncm91bmQ6ICNlZWUgdXJsKCdodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vZ3BzLWNzLXMvQUhWQXdlcmhyeEdScVo0bUdGZkFBemVwWm96YVlzRjJXVGhDWmtLRWFjWlV5SktvWXhKWW45WXN6TnE1Yi1vZHY4b0RDZ0FJS2htUnNPV2ZxblNqQTd5ZTNoZkQ0dlVfMmxfYnRmRWdmdk5MMnlVMmt6cUFJbkZ4bFplTkhhdVBkaEZGbXlpSW9lb29kdz1zMTM2MC13MTM2MC1oMTAyMC1ydycpIGNlbnRlci9jb3ZlciBuby1yZXBlYXQ7CiAgICAgICI+PC9kaXY+CgogICAgICA8IS0tIENvbnRlbnQgLS0+CiAgICAgIDxkaXYgc3R5bGU9InBhZGRpbmc6IDE0cHggMTZweCAxNnB4OyI+CiAgICAgICAgPCEtLSBUeXBlIGJhZGdlIC0tPgogICAgICAgIDxzcGFuIHN0eWxlPSIKICAgICAgICAgICAgZGlzcGxheTogaW5saW5lLWJsb2NrOwogICAgICAgICAgICBiYWNrZ3JvdW5kOiAjRjM5QzEyOwogICAgICAgICAgICBjb2xvcjogI2ZmZjsKICAgICAgICAgICAgZm9udC1zaXplOiAxMHB4OwogICAgICAgICAgICBmb250LWZhbWlseTogJ0FyaWFsJywgc2Fucy1zZXJpZjsKICAgICAgICAgICAgZm9udC13ZWlnaHQ6IDcwMDsKICAgICAgICAgICAgbGV0dGVyLXNwYWNpbmc6IDFweDsKICAgICAgICAgICAgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTsKICAgICAgICAgICAgcGFkZGluZzogM3B4IDhweDsKICAgICAgICAgICAgYm9yZGVyLXJhZGl1czogMjBweDsKICAgICAgICAgICAgbWFyZ2luLWJvdHRvbTogOHB4OwogICAgICAgICI+SWNlIENyZWFtIFNob3A8L3NwYW4+CgogICAgICAgIDwhLS0gTmFtZSAtLT4KICAgICAgICA8aDMgc3R5bGU9IgogICAgICAgICAgICBtYXJnaW46IDAgMCA4cHggMDsKICAgICAgICAgICAgZm9udC1zaXplOiAxN3B4OwogICAgICAgICAgICBjb2xvcjogIzFhMWExYTsKICAgICAgICAgICAgbGluZS1oZWlnaHQ6IDEuMzsKICAgICAgICAiPkJyYXVtJ3MgSWNlIENyZWFtPC9oMz4KCiAgICAgICAgPCEtLSBEZXNjcmlwdGlvbiAtLT4KICAgICAgICA8cCBzdHlsZT0iCiAgICAgICAgICAgIG1hcmdpbjogMDsKICAgICAgICAgICAgZm9udC1zaXplOiAxM3B4OwogICAgICAgICAgICBjb2xvcjogIzU1NTsKICAgICAgICAgICAgbGluZS1oZWlnaHQ6IDEuNjsKICAgICAgICAgICAgZm9udC1mYW1pbHk6ICdBcmlhbCcsIHNhbnMtc2VyaWY7CiAgICAgICAgIj5JIGhhdmUgdml2aWQgbWVtb3JpZXMgb2YgZ2V0dGluZyBiaXJ0aGRheSBjYWtlIGljZSBjcmVhbSBhdCB0aGlzIEJyYXVtJ3MgYWZ0ZXIgc2Nob29sIGluIEtpbmRlcmdhcnRlbi4gVGhlIG9ubHkgZmxhdm9yIEkgZXZlciBnZXQgaGVyZSBpcyBiaXJ0aGRheSBjYWtlLjwvcD4KICAgICAgPC9kaXY+CiAgICA8L2Rpdj4KICAgIA==" width="300" style="border:none !important;" height="310"></iframe>`)[0];
+                popup_1b25624d227c3d4294e29634bf85e9e3.setContent(i_frame_29b73825ea5336ee6ec5499369ec6dff);
+            
+        
+
+        marker_d3742d430a017bb1f65ef113cb421f0e.bindPopup(popup_1b25624d227c3d4294e29634bf85e9e3)
+        ;
+
+        
+    
+    
+            marker_d3742d430a017bb1f65ef113cb421f0e.bindTooltip(
+                `<div>
+                     <b>Braum's Ice Cream</b><br><i>Ice Cream Shop</i>
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d3742d430a017bb1f65ef113cb421f0e.setIcon(icon_a2da7af17a02c483a00d4de461d5f82e);
+            
+    
+            var marker_104f4b6e1f81ebbcd3f6264a16b1249a = L.marker(
+                [32.726753, -97.339163],
+                {
+}
+            ).addTo(map_1959e1aced145d29ee108e075b7f1b88);
+        
+    
+            var icon_e6600daedfb3ecc6fde4290163158dec = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "white",
+  "iconColor": "#E91E8C",
+  "icon": "paint-brush",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_0dff7e7bb79bdd4f3b8be437e821615d = L.popup({
+  "maxWidth": 310,
+});
+
+        
+            
+                var i_frame_564974f0ad077cc399756ed69813bab4 = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxkaXYgc3R5bGU9IgogICAgICAgIGZvbnQtZmFtaWx5OiAnR2VvcmdpYScsIHNlcmlmOwogICAgICAgIHdpZHRoOiAyODBweDsKICAgICAgICBib3JkZXItcmFkaXVzOiAxMHB4OwogICAgICAgIG92ZXJmbG93OiBoaWRkZW47CiAgICAgICAgYm94LXNoYWRvdzogMCA0cHggMTZweCByZ2JhKDAsMCwwLDAuMTgpOwogICAgICAgIGJhY2tncm91bmQ6ICNmZmY7CiAgICAiPgogICAgICA8IS0tIEltYWdlIC0tPgogICAgICA8ZGl2IHN0eWxlPSIKICAgICAgICAgIHdpZHRoOiAxMDAlOwogICAgICAgICAgaGVpZ2h0OiAxNjBweDsKICAgICAgICAgIGJhY2tncm91bmQ6ICNlZWUgdXJsKCdodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vZ3BzLWNzLXMvQUhWQXdlcnByT0NyVVFkVTdVWWdSQ3Q1LU00SG04emR3alpEWEh1ek1fbzNhb3QtRlFod21sdEJkeXlnS1NZNWJjWThvLXNRdEVDWkRiaWFENUxTWkxhMTVDU19NUC1tbG5JcHJEYnc3TzBGcHRBR3Z2cDRtUlNJZ0FvRDViS3lzaW13THBwSWl2eU56QT13Mjg5LWgxNTYtbi1rLW5vJykgY2VudGVyL2NvdmVyIG5vLXJlcGVhdDsKICAgICAgIj48L2Rpdj4KCiAgICAgIDwhLS0gQ29udGVudCAtLT4KICAgICAgPGRpdiBzdHlsZT0icGFkZGluZzogMTRweCAxNnB4IDE2cHg7Ij4KICAgICAgICA8IS0tIFR5cGUgYmFkZ2UgLS0+CiAgICAgICAgPHNwYW4gc3R5bGU9IgogICAgICAgICAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7CiAgICAgICAgICAgIGJhY2tncm91bmQ6ICNFOTFFOEM7CiAgICAgICAgICAgIGNvbG9yOiAjZmZmOwogICAgICAgICAgICBmb250LXNpemU6IDEwcHg7CiAgICAgICAgICAgIGZvbnQtZmFtaWx5OiAnQXJpYWwnLCBzYW5zLXNlcmlmOwogICAgICAgICAgICBmb250LXdlaWdodDogNzAwOwogICAgICAgICAgICBsZXR0ZXItc3BhY2luZzogMXB4OwogICAgICAgICAgICB0ZXh0LXRyYW5zZm9ybTogdXBwZXJjYXNlOwogICAgICAgICAgICBwYWRkaW5nOiAzcHggOHB4OwogICAgICAgICAgICBib3JkZXItcmFkaXVzOiAyMHB4OwogICAgICAgICAgICBtYXJnaW4tYm90dG9tOiA4cHg7CiAgICAgICAgIj5BcnQgU3R1ZGlvPC9zcGFuPgoKICAgICAgICA8IS0tIE5hbWUgLS0+CiAgICAgICAgPGgzIHN0eWxlPSIKICAgICAgICAgICAgbWFyZ2luOiAwIDAgOHB4IDA7CiAgICAgICAgICAgIGZvbnQtc2l6ZTogMTdweDsKICAgICAgICAgICAgY29sb3I6ICMxYTFhMWE7CiAgICAgICAgICAgIGxpbmUtaGVpZ2h0OiAxLjM7CiAgICAgICAgIj5BcnRzIDV0aCBBdmVudWU8L2gzPgoKICAgICAgICA8IS0tIERlc2NyaXB0aW9uIC0tPgogICAgICAgIDxwIHN0eWxlPSIKICAgICAgICAgICAgbWFyZ2luOiAwOwogICAgICAgICAgICBmb250LXNpemU6IDEzcHg7CiAgICAgICAgICAgIGNvbG9yOiAjNTU1OwogICAgICAgICAgICBsaW5lLWhlaWdodDogMS42OwogICAgICAgICAgICBmb250LWZhbWlseTogJ0FyaWFsJywgc2Fucy1zZXJpZjsKICAgICAgICAiPkkgdXNlZCB0byBwZXJmb3JtIGF0IHRoaXMgbG9jYXRpb24uIE15IG1pZGRsZSBzY2hvb2wgd291bGQgdXNlIHRoaXMgc3BhY2UgZm9yIG91ciB0aGVhdGVyIHBlcmZvcm1hbmNlcy48L3A+CiAgICAgIDwvZGl2PgogICAgPC9kaXY+CiAgICA=" width="300" style="border:none !important;" height="310"></iframe>`)[0];
+                popup_0dff7e7bb79bdd4f3b8be437e821615d.setContent(i_frame_564974f0ad077cc399756ed69813bab4);
+            
+        
+
+        marker_104f4b6e1f81ebbcd3f6264a16b1249a.bindPopup(popup_0dff7e7bb79bdd4f3b8be437e821615d)
+        ;
+
+        
+    
+    
+            marker_104f4b6e1f81ebbcd3f6264a16b1249a.bindTooltip(
+                `<div>
+                     <b>Arts 5th Avenue</b><br><i>Art Studio</i>
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_104f4b6e1f81ebbcd3f6264a16b1249a.setIcon(icon_e6600daedfb3ecc6fde4290163158dec);
+            
+    
+            var marker_f18c3770fd8f4016abf828270b29c827 = L.marker(
+                [32.777264, -97.348458],
+                {
+}
+            ).addTo(map_1959e1aced145d29ee108e075b7f1b88);
+        
+    
+            var icon_338ca27653167101d579ad288fd8522f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "white",
+  "iconColor": "#795548",
+  "icon": "coffee",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_14d97acd1f01b324a84b39e1ee782c48 = L.popup({
+  "maxWidth": 310,
+});
+
+        
+            
+                var i_frame_4e55b94e86496a403db7b5b7c068fbcc = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxkaXYgc3R5bGU9IgogICAgICAgIGZvbnQtZmFtaWx5OiAnR2VvcmdpYScsIHNlcmlmOwogICAgICAgIHdpZHRoOiAyODBweDsKICAgICAgICBib3JkZXItcmFkaXVzOiAxMHB4OwogICAgICAgIG92ZXJmbG93OiBoaWRkZW47CiAgICAgICAgYm94LXNoYWRvdzogMCA0cHggMTZweCByZ2JhKDAsMCwwLDAuMTgpOwogICAgICAgIGJhY2tncm91bmQ6ICNmZmY7CiAgICAiPgogICAgICA8IS0tIEltYWdlIC0tPgogICAgICA8ZGl2IHN0eWxlPSIKICAgICAgICAgIHdpZHRoOiAxMDAlOwogICAgICAgICAgaGVpZ2h0OiAxNjBweDsKICAgICAgICAgIGJhY2tncm91bmQ6ICNlZWUgdXJsKCdodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vcC9BRjFRaXBPRkdjZXJoeHMybFJjZExyMGlxeDBsZDB5cVlSN1dkZ1FQQkVFbj1zMTM2MC13MTM2MC1oMTAyMC1ydycpIGNlbnRlci9jb3ZlciBuby1yZXBlYXQ7CiAgICAgICI+PC9kaXY+CgogICAgICA8IS0tIENvbnRlbnQgLS0+CiAgICAgIDxkaXYgc3R5bGU9InBhZGRpbmc6IDE0cHggMTZweCAxNnB4OyI+CiAgICAgICAgPCEtLSBUeXBlIGJhZGdlIC0tPgogICAgICAgIDxzcGFuIHN0eWxlPSIKICAgICAgICAgICAgZGlzcGxheTogaW5saW5lLWJsb2NrOwogICAgICAgICAgICBiYWNrZ3JvdW5kOiAjNzk1NTQ4OwogICAgICAgICAgICBjb2xvcjogI2ZmZjsKICAgICAgICAgICAgZm9udC1zaXplOiAxMHB4OwogICAgICAgICAgICBmb250LWZhbWlseTogJ0FyaWFsJywgc2Fucy1zZXJpZjsKICAgICAgICAgICAgZm9udC13ZWlnaHQ6IDcwMDsKICAgICAgICAgICAgbGV0dGVyLXNwYWNpbmc6IDFweDsKICAgICAgICAgICAgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTsKICAgICAgICAgICAgcGFkZGluZzogM3B4IDhweDsKICAgICAgICAgICAgYm9yZGVyLXJhZGl1czogMjBweDsKICAgICAgICAgICAgbWFyZ2luLWJvdHRvbTogOHB4OwogICAgICAgICI+Q29mZmVlIFNob3A8L3NwYW4+CgogICAgICAgIDwhLS0gTmFtZSAtLT4KICAgICAgICA8aDMgc3R5bGU9IgogICAgICAgICAgICBtYXJnaW46IDAgMCA4cHggMDsKICAgICAgICAgICAgZm9udC1zaXplOiAxN3B4OwogICAgICAgICAgICBjb2xvcjogIzFhMWExYTsKICAgICAgICAgICAgbGluZS1oZWlnaHQ6IDEuMzsKICAgICAgICAiPkNhc2EgQXp1bCBDb2ZmZWU8L2gzPgoKICAgICAgICA8IS0tIERlc2NyaXB0aW9uIC0tPgogICAgICAgIDxwIHN0eWxlPSIKICAgICAgICAgICAgbWFyZ2luOiAwOwogICAgICAgICAgICBmb250LXNpemU6IDEzcHg7CiAgICAgICAgICAgIGNvbG9yOiAjNTU1OwogICAgICAgICAgICBsaW5lLWhlaWdodDogMS42OwogICAgICAgICAgICBmb250LWZhbWlseTogJ0FyaWFsJywgc2Fucy1zZXJpZjsKICAgICAgICAiPk15IHNpc3RlcidzIGdvb2QgZnJpZW5kIG93bnMgdGhpcyBjb2ZmZWUgc2hvcC4gSXQgaGFzIGdyZWF0IGNvZmZlZSBhbmQgdW5pcXVlIGRyaW5rcyBpbnNwaXJlZCBieSB0aGUgTGF0aW5vIGNvbW11bml0eS48L3A+CiAgICAgIDwvZGl2PgogICAgPC9kaXY+CiAgICA=" width="300" style="border:none !important;" height="310"></iframe>`)[0];
+                popup_14d97acd1f01b324a84b39e1ee782c48.setContent(i_frame_4e55b94e86496a403db7b5b7c068fbcc);
+            
+        
+
+        marker_f18c3770fd8f4016abf828270b29c827.bindPopup(popup_14d97acd1f01b324a84b39e1ee782c48)
+        ;
+
+        
+    
+    
+            marker_f18c3770fd8f4016abf828270b29c827.bindTooltip(
+                `<div>
+                     <b>Casa Azul Coffee</b><br><i>Coffee Shop</i>
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_f18c3770fd8f4016abf828270b29c827.setIcon(icon_338ca27653167101d579ad288fd8522f);
+            
+    
+            var marker_fa12112aabe854d8ad088fd92fa4c570 = L.marker(
+                [32.754086, -97.331566],
+                {
+}
+            ).addTo(map_1959e1aced145d29ee108e075b7f1b88);
+        
+    
+            var icon_5023f2b57d4cbba49632f7b56b0ce925 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "white",
+  "iconColor": "#1ABC9C",
+  "icon": "music",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8756abe94a38286272371ff699a70952 = L.popup({
+  "maxWidth": 310,
+});
+
+        
+            
+                var i_frame_20cc40d0b933eae504b94f425528778a = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxkaXYgc3R5bGU9IgogICAgICAgIGZvbnQtZmFtaWx5OiAnR2VvcmdpYScsIHNlcmlmOwogICAgICAgIHdpZHRoOiAyODBweDsKICAgICAgICBib3JkZXItcmFkaXVzOiAxMHB4OwogICAgICAgIG92ZXJmbG93OiBoaWRkZW47CiAgICAgICAgYm94LXNoYWRvdzogMCA0cHggMTZweCByZ2JhKDAsMCwwLDAuMTgpOwogICAgICAgIGJhY2tncm91bmQ6ICNmZmY7CiAgICAiPgogICAgICA8IS0tIEltYWdlIC0tPgogICAgICA8ZGl2IHN0eWxlPSIKICAgICAgICAgIHdpZHRoOiAxMDAlOwogICAgICAgICAgaGVpZ2h0OiAxNjBweDsKICAgICAgICAgIGJhY2tncm91bmQ6ICNlZWUgdXJsKCdodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vcC9BRjFRaXBNMlNzOVY1LXBTQXJYNTU4c2RVT3c4aDlaRkM0WnEybUpDY0l4aT13MjQzLWgxNzQtbi1rLW5vLW51JykgY2VudGVyL2NvdmVyIG5vLXJlcGVhdDsKICAgICAgIj48L2Rpdj4KCiAgICAgIDwhLS0gQ29udGVudCAtLT4KICAgICAgPGRpdiBzdHlsZT0icGFkZGluZzogMTRweCAxNnB4IDE2cHg7Ij4KICAgICAgICA8IS0tIFR5cGUgYmFkZ2UgLS0+CiAgICAgICAgPHNwYW4gc3R5bGU9IgogICAgICAgICAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7CiAgICAgICAgICAgIGJhY2tncm91bmQ6ICMxQUJDOUM7CiAgICAgICAgICAgIGNvbG9yOiAjZmZmOwogICAgICAgICAgICBmb250LXNpemU6IDEwcHg7CiAgICAgICAgICAgIGZvbnQtZmFtaWx5OiAnQXJpYWwnLCBzYW5zLXNlcmlmOwogICAgICAgICAgICBmb250LXdlaWdodDogNzAwOwogICAgICAgICAgICBsZXR0ZXItc3BhY2luZzogMXB4OwogICAgICAgICAgICB0ZXh0LXRyYW5zZm9ybTogdXBwZXJjYXNlOwogICAgICAgICAgICBwYWRkaW5nOiAzcHggOHB4OwogICAgICAgICAgICBib3JkZXItcmFkaXVzOiAyMHB4OwogICAgICAgICAgICBtYXJnaW4tYm90dG9tOiA4cHg7CiAgICAgICAgIj5KYXp6IExvdW5nZTwvc3Bhbj4KCiAgICAgICAgPCEtLSBOYW1lIC0tPgogICAgICAgIDxoMyBzdHlsZT0iCiAgICAgICAgICAgIG1hcmdpbjogMCAwIDhweCAwOwogICAgICAgICAgICBmb250LXNpemU6IDE3cHg7CiAgICAgICAgICAgIGNvbG9yOiAjMWExYTFhOwogICAgICAgICAgICBsaW5lLWhlaWdodDogMS4zOwogICAgICAgICI+U2NhdCBKYXp6IExvdW5nZTwvaDM+CgogICAgICAgIDwhLS0gRGVzY3JpcHRpb24gLS0+CiAgICAgICAgPHAgc3R5bGU9IgogICAgICAgICAgICBtYXJnaW46IDA7CiAgICAgICAgICAgIGZvbnQtc2l6ZTogMTNweDsKICAgICAgICAgICAgY29sb3I6ICM1NTU7CiAgICAgICAgICAgIGxpbmUtaGVpZ2h0OiAxLjY7CiAgICAgICAgICAgIGZvbnQtZmFtaWx5OiAnQXJpYWwnLCBzYW5zLXNlcmlmOwogICAgICAgICI+VGhpcyBpcyBhIHJlYWxseSBmdW4gbG9jYXRpb24gaW4gRm9ydCBXb3J0aC4gVGhleSBoYXZlIGdyZWF0IG11c2ljIGFuZCBteSBmcmllbmRzIGFuZCBJIGxvdmUgZ29pbmcgaGVyZS48L3A+CiAgICAgIDwvZGl2PgogICAgPC9kaXY+CiAgICA=" width="300" style="border:none !important;" height="310"></iframe>`)[0];
+                popup_8756abe94a38286272371ff699a70952.setContent(i_frame_20cc40d0b933eae504b94f425528778a);
+            
+        
+
+        marker_fa12112aabe854d8ad088fd92fa4c570.bindPopup(popup_8756abe94a38286272371ff699a70952)
+        ;
+
+        
+    
+    
+            marker_fa12112aabe854d8ad088fd92fa4c570.bindTooltip(
+                `<div>
+                     <b>Scat Jazz Lounge</b><br><i>Jazz Lounge</i>
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_fa12112aabe854d8ad088fd92fa4c570.setIcon(icon_5023f2b57d4cbba49632f7b56b0ce925);
+            
+</script>
+</html>
